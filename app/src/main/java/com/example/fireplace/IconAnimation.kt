@@ -36,14 +36,14 @@ fun ImageView.fadeWithDiminish() {
 
     ObjectAnimator.ofPropertyValuesHolder(
         this,
-        PropertyValuesHolder.ofFloat(View.ALPHA, 0.7f, 0f),
+        PropertyValuesHolder.ofFloat(View.ALPHA, 0.4f, 0f),
         PropertyValuesHolder.ofFloat(View.SCALE_X, 0.6f,1f),
         PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.6f,1f))
         .apply {
-            duration = 1000
+            duration = 700
             addListener(object :SimpleAnimatorListener(){
                 override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
-                    this@fadeWithDiminish.visibility = View.GONE
+//                    this@fadeWithDiminish.visibility = View.GONE
                 }
             })
         }.start()

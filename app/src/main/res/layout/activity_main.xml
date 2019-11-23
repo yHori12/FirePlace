@@ -6,16 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/player_icon"
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/player"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/ic_pause_circle_outline_24px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        app:use_controller="false"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
 
+    </com.google.android.exoplayer2.ui.PlayerView>
+
+    <ImageView
+        android:id="@+id/player_controller_status"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="#00000000"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
     </ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
