@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         player.player = viewModel.player
-
+        player_controller_status.requestFocus()
         player_controller_status.setOnClickListener(getImageOnClickListener())
     }
 

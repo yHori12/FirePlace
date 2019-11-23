@@ -15,7 +15,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.FullScreen">
+        android:theme="@style/AppTheme.FullScreen"
+        android:banner="@drawable/camp_wood_candle_fire">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
