@@ -42,7 +42,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-//        createHomeChannel(application)
+        createHomeChannel(application)
 
 
         //ここで再生含めて全部やる。

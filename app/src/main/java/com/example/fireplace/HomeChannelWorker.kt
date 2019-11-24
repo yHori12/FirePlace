@@ -9,7 +9,6 @@ import androidx.tvprovider.media.tv.Channel
 import androidx.tvprovider.media.tv.ChannelLogoUtils
 import androidx.tvprovider.media.tv.TvContractCompat
 import androidx.work.*
-import java.util.*
 
 class HomeChannelWorker(private val context: Context,
                         workParams: WorkerParameters) :
@@ -27,23 +26,23 @@ class HomeChannelWorker(private val context: Context,
     }
 
     private fun addChannel(context: Context) {
-        val channelId = context.getChannelId()
+        val savedChannelId = context.getChannelId()
 
-        if (channelId == -1L){
+        if (savedChannelId == -1L){
             val componentName = ComponentName(context,MainActivity::class.java)
             val inputId = TvContractCompat.buildInputId(componentName)
 
             val channel = Channel.Builder()
                 .setType(TvContractCompat.Channels.TYPE_PREVIEW)
                 .setDisplayName("燃")
-                .setAppLinkIntentUri(Uri.parse("fire://"))
+                .setAppLinkIntentUri(Uri.parse("fire://fire"))
 
             val channelUri = context.contentResolver.insert(
                 TvContractCompat.Channels.CONTENT_URI,channel.build().toContentValues())
 
-            channelUri?.let { context.saveChannelId(ContentUris.parseId(it)) }
-
-            ChannelLogoUtils.storeChannelLogo(context, channelId, BitmapFactory.decodeResource(context.resources, R.drawable.camp_wood_candle_fire)) // チャンネルのロゴを登録
+            val channelId = ContentUris.parseId(channelUri)
+            context.saveChannelId(channelId)
+            ChannelLogoUtils.storeChannelLogo(context, channelId, BitmapFactory.decodeResource(context.resources, R.drawable.camp_wood_candle_fire_1)) // チャンネルのロゴを登録
             TvContractCompat.requestChannelBrowsable(context, channelId) // ホーム画面に表示(デフォルトチャンネルのみ)
 
         }
