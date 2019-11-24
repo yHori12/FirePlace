@@ -28,6 +28,7 @@ class HomeChannelWorker(private val context: Context,
     private fun addChannel(context: Context) {
         val savedChannelId = context.getChannelId()
 
+        //todo 追加済なら無視する。
         if (savedChannelId == -1L){
             val componentName = ComponentName(context,MainActivity::class.java)
             val inputId = TvContractCompat.buildInputId(componentName)
@@ -38,13 +39,12 @@ class HomeChannelWorker(private val context: Context,
                 .setAppLinkIntentUri(Uri.parse("fire://fire"))
 
             val channelUri = context.contentResolver.insert(
-                TvContractCompat.Channels.CONTENT_URI,channel.build().toContentValues())
+                TvContractCompat.Channels.CONTENT_URI,channel.build().toContentValues()) ?: return
 
             val channelId = ContentUris.parseId(channelUri)
             context.saveChannelId(channelId)
             ChannelLogoUtils.storeChannelLogo(context, channelId, BitmapFactory.decodeResource(context.resources, R.drawable.camp_wood_candle_fire_1)) // チャンネルのロゴを登録
             TvContractCompat.requestChannelBrowsable(context, channelId) // ホーム画面に表示(デフォルトチャンネルのみ)
-
         }
 
     }
