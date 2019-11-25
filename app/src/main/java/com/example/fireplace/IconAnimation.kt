@@ -9,10 +9,11 @@ import android.widget.ImageView
 
 const val SHARE_FILE_NAME = "SHARE_DEFAULT_CHANNEL"
 const val SHARE_KEY_CHANNEL = "KEY_DEFAULT_CHANNEL"
-fun Context.saveChannelId(value: Long) =
+fun Context.saveChannelId(value: Long) {
     this.getSharedPreferences(SHARE_FILE_NAME, Context.MODE_PRIVATE).edit().putLong(
         SHARE_KEY_CHANNEL, value
-    )
+    ).apply()
+}
 
 fun Context.getChannelId(): Long = this.getSharedPreferences(
     SHARE_FILE_NAME, Context.MODE_PRIVATE
@@ -41,11 +42,6 @@ fun ImageView.fadeWithDiminish() {
         PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.6f,1f))
         .apply {
             duration = 700
-            addListener(object :SimpleAnimatorListener(){
-                override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
-//                    this@fadeWithDiminish.visibility = View.GONE
-                }
-            })
         }.start()
 }
 

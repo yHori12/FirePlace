@@ -4,8 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
@@ -21,14 +19,21 @@ import java.util.*
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    var player: ExoPlayer = ExoPlayerFactory.newSimpleInstance(application.applicationContext)
-    private val uri: Uri = Uri.parse("asset:///fireplace_7070.mp4")
-
+    val moviePlayer: ExoPlayer = ExoPlayerFactory.newSimpleInstance(application.applicationContext)
+    private val audioPlayer: ExoPlayer = ExoPlayerFactory.newSimpleInstance(application.applicationContext)
 
     companion object {
         private const val NAME = "HomeChannelWorker"
         private fun getWork(): OneTimeWorkRequest =
             OneTimeWorkRequestBuilder<HomeChannelWorker>().build()
+
+        private val movieUrl: Uri = Uri.parse("asset:///fireplace_7070.mp4")
+        private val audioUri: Uri = Uri.parse("asset:///fire_audio.mp3")
+    }
+
+    init {
+        createHomeChannel(application)
+        playFireMovie(application)
     }
 
     private fun createHomeChannel(context: Context): UUID {
@@ -40,11 +45,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return work.id
     }
 
-
-    init {
-        createHomeChannel(application)
-
-
+    private fun playFireMovie(application: Application) {
         //ここで再生含めて全部やる。
         val dataSourceFactory =
             DefaultDataSourceFactory(
@@ -52,27 +53,32 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 getUserAgent(application, application.packageName),
                 null
             )
-        val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri)
+        val movieMediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(movieUrl)
+        val audioMediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(audioUri)
 
-        player.apply {
-            this.prepare(mediaSource)
+        moviePlayer.apply {
+            this.prepare(movieMediaSource)
+            this.playWhenReady = true
+            repeatMode = Player.REPEAT_MODE_ALL
+        }
+        audioPlayer.apply {
+            this.prepare(audioMediaSource)
             this.playWhenReady = true
             repeatMode = Player.REPEAT_MODE_ALL
         }
     }
 
     fun changePlayStatus() {
-        when (player.playWhenReady) {
-            true -> player.playWhenReady = false
-            false -> player.playWhenReady = true
+        when (moviePlayer.playWhenReady) {
+            true -> {
+                moviePlayer.playWhenReady = false
+                audioPlayer.playWhenReady = false
+            }
+            false -> {
+                moviePlayer.playWhenReady = true
+                audioPlayer.playWhenReady = true
+            }
         }
     }
 
 }
-
-//todo animation
-/*
-* youtubeみたいな
-* 最初 濃&小
-* 最後 薄&大
-* */
