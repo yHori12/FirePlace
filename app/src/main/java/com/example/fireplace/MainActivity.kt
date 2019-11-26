@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         player.player = viewModel.moviePlayer
         player_controller_status.requestFocus()
@@ -34,4 +34,9 @@ class MainActivity : AppCompatActivity() {
             }
             Handler().postDelayed({ viewModel.changePlayStatus() },500)
         }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.releasePlayer()
+    }
 }

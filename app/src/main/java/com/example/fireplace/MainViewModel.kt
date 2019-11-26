@@ -81,4 +81,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun releasePlayer() {
+        moviePlayer.release()
+        audioPlayer.release()
+    }
+
 }

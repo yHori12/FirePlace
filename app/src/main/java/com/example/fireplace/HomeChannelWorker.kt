@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.tvprovider.media.tv.Channel
 import androidx.tvprovider.media.tv.ChannelLogoUtils
+import androidx.tvprovider.media.tv.PreviewProgram
 import androidx.tvprovider.media.tv.TvContractCompat
 import androidx.work.*
 
@@ -29,12 +30,9 @@ class HomeChannelWorker(private val context: Context,
         val savedChannelId = context.getChannelId()
 
         if (savedChannelId == -1L){
-            val componentName = ComponentName(context,MainActivity::class.java)
-            val inputId = TvContractCompat.buildInputId(componentName)
-
             val channel = Channel.Builder()
                 .setType(TvContractCompat.Channels.TYPE_PREVIEW)
-                .setDisplayName("Now Borning")
+                .setDisplayName("Now on fire")
                 .setAppLinkIntentUri(Uri.parse("fire://fire"))
 
             val channelUri = context.contentResolver.insert(
