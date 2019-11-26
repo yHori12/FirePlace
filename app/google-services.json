@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "916728474757",
+    "firebase_url": "https://fireplace-59db4.firebaseio.com",
+    "project_id": "fireplace-59db4",
+    "storage_bucket": "fireplace-59db4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916728474757:android:8f421f3ca0c2b7aaa78dec",
+        "android_client_info": {
+          "package_name": "com.example.fireplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916728474757-7uej1v6e61ufj6p6mcl8dava2fsqu532.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fireplace",
+            "certificate_hash": "a234d4b3911d5e5b49d50e84e4e7a3abc040db3f"
+          }
+        },
+        {
+          "client_id": "916728474757-la8g2hevii6kmacg713seeme5gpgog82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWsqcYa7hfUWpEVvUkhwBM6TMtSWl1lZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916728474757-la8g2hevii6kmacg713seeme5gpgog82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
