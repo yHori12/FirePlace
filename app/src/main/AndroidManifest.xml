@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.fireplace">
+    package="com.iseab.fireplace">
 
     <uses-feature
         android:name="android.software.leanback"
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen"
         android:banner="@drawable/fireplace_app_icon">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.iseab.fireplace.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />

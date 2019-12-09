@@ -1,4 +1,4 @@
-package com.example.fireplace
+package com.iseab.fireplace
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

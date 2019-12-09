@@ -1,13 +1,11 @@
-package com.example.fireplace
+package com.iseab.fireplace
 
-import android.content.ComponentName
 import android.content.ContentUris
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.tvprovider.media.tv.Channel
 import androidx.tvprovider.media.tv.ChannelLogoUtils
-import androidx.tvprovider.media.tv.PreviewProgram
 import androidx.tvprovider.media.tv.TvContractCompat
 import androidx.work.*
 
@@ -15,7 +13,7 @@ class HomeChannelWorker(private val context: Context,
                         workParams: WorkerParameters) :
     Worker(context, workParams) {
 
-    //doWork() から返される Result の各メソッドにより、WorkManager に以下の情報が伝えられます。
+    //doWork() から返される Result の各メソッドにより、WorkManager に以下の情報が伝えられる。
     //
     //Result.success(): タスクが正常に終了したかどうか
     //Result.failure(): タスクが失敗したかどうか

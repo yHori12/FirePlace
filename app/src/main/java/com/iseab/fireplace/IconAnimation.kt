@@ -1,4 +1,4 @@
-package com.example.fireplace
+package com.iseab.fireplace
 
 import android.animation.Animator
 import android.animation.ObjectAnimator

@@ -1,4 +1,4 @@
-package com.example.fireplace
+package com.iseab.fireplace
 
 import android.app.Application
 import android.content.Context
@@ -46,7 +46,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun playFireMovie(application: Application) {
-        //ここで再生含めて全部やる。
         val dataSourceFactory =
             DefaultDataSourceFactory(
                 application,
